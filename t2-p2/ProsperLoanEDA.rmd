@@ -60,6 +60,29 @@ df$LoanStatus <- factor(df$LoanStatus,
                         levels = c("ChargedOff", "Defaulted", "PastDue",
                                   "Current", "FinalPaymentInProgress",
                                   "Completed", "Cancelled"))
+# Convert listing categories to proper labels
+df$ListingCategory..numeric. <- factor(df$ListingCategory..numeric., labels = 
+                                         c("Not Available",
+                                           "Debt Consolidation",
+                                           "Home Improvement",
+                                           "Business",
+                                           "Personal Loan",
+                                           "Student Use",
+                                           "Auto",
+                                           "Other",
+                                           "Baby & Adoption",
+                                           "Boat",
+                                           "Cosmetic Procedure",
+                                           "Engagement Ring",
+                                           "Green Loans",
+                                           "Household Expenses",
+                                           "Large Purchases",
+                                           "Medical/Dental",
+                                           "Motorcycle",
+                                           "RV",
+                                           "Taxes",
+                                           "Vacation",
+                                           "Wedding Loans"))
 ```
 
 ## Introduction
@@ -126,14 +149,21 @@ ggplot(data = df,
   geom_histogram(binwidth = 500) +
   scale_x_continuous(breaks = seq(0,35000,5000))
 
+summary(df$LoanOriginalAmount)
+
 ggplot(data = df,
        aes(x = ListingCategory..numeric.)) +
   geom_bar() +
-  scale_x_continuous(breaks = seq(0,20,1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+summary(df$ListingCategory..numeric.)
 
 ggplot(data = df,
        aes(x = IncomeRange)) +
-  geom_bar()
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+summary(df$IncomeRange)
 ```
 
 There's a large range of the amounts people are looking to borrow 1k-35k. It 
@@ -155,27 +185,39 @@ ggplot(data = df,
        aes(x = BorrowerRate)) +
   geom_histogram(binwidth = 0.01)
 
+summary(df$BorrowerRate)
+
 ggplot(data = df,
        aes(x = LenderYield)) +
   geom_histogram(binwidth = 0.01)
+
+summary(df$LenderYield)
 
 ggplot(data = df,
        aes(x = CreditScoreAvg)) +
   geom_histogram(binwidth = 20) +
   scale_x_continuous(breaks = seq(0,900,100))
 
+summary(df$CreditScoreAvg)
+
 ggplot(data = df,
        aes(x = PropMonthlyBin)) +
   geom_bar()
+
+summary(df$PropMonthly)
 
 ggplot(data = df,
        aes(x = DebtToIncomeRatio)) +
   geom_histogram(binwidth = 0.01) +
   scale_x_continuous(limits = c(0, 1.5))
 
+summary(df$DebtToIncomeRatio)
+
 ggplot(data = df,
        aes(x = Rating)) +
   geom_bar()
+
+summary(df$Rating)
 ```
 
 Borrower rate ranges from 0.04-0.5, while lender yield ranges from 0-0.5.
@@ -202,11 +244,17 @@ ggplot(data = df,
   geom_bar() +
   scale_x_date(date_breaks = "1 year", date_labels = "%Y")
 
+ggplot(data = df,
+       aes(x = LoanStatus)) +
+  geom_bar()
+
 table(df$LoanStatus, dnn = "Loan Status Summary")
 
 ggplot(data = filter(df, Closed == "Closed"),
        aes(x = LP_NetPrincipalLoss)) +
   geom_histogram(binwidth = 1000)
+
+summary(df$LP_NetPrincipalLoss)
 ```
 
 There is a dip 2008 Q4 to 2009 Q2, post-financial crisis and possibly due to the
@@ -225,7 +273,8 @@ Prosper use to determine their ratings?
 ```{r echo=FALSE, message=FALSE, warning=FALSE, plots_4}
 ggplot(data = df,
        aes(x = IncomeRange, y = Rating)) +
-  geom_jitter(alpha = 0.03)
+  geom_bin2d() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ggplot(data = df,
        aes(x = DebtToIncomeRatio, y = Rating)) +
@@ -237,7 +286,7 @@ ggplot(data = df,
 
 ggplot(data = df,
        aes(x = PropMonthlyBin, y = Rating)) +
-  geom_jitter(alpha = 0.05)
+  geom_bin2d()
 ```
 
 There are less HR in the higher income group, and also less AA in the lower 
@@ -261,15 +310,16 @@ first things we would look at, does it determine the outcome of the loan?
 ```{r echo=FALSE, message=FALSE, warning=FALSE, plots_5}
 ggplot(data = df,
        aes(x = IncomeRange, y = LoanOriginalAmount)) +
-  geom_jitter(alpha = 0.1)
+  geom_jitter(alpha = 0.1) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ggplot(data = df,
        aes(x = LoanStatus, y = PropMonthlyBin)) +
-  geom_jitter(alpha = 0.1)
+  geom_bin2d()
 
 ggplot(data = df,
        aes(x = LoanStatus, y = Rating)) +
-  geom_jitter(alpha = 0.05)
+  geom_bin2d()
 ```
 
 Loans for those below the 100k income range seem to max out at 25k. Can see that 
@@ -299,7 +349,8 @@ ggplot(data = df,
 ggplot(data = df,
        aes(x = IncomeRange, y = Rating, color = LoanStatus)) +
   geom_jitter(alpha = 0.2) +
-  facet_wrap(~RatingType)
+  facet_wrap(~RatingType) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
 Lender yield vs borrow rate is pretty much to be expected. The higher the rate 
@@ -317,14 +368,6 @@ doesn't seem like the income affects how likely the loan is paid back.
 ------
 
 ## Final Plots and Summary
-
-> **Tip**: You've done a lot of exploration and have built up an understanding
-of the structure of and relationships between the variables in your dataset.
-Here, you will select three plots from all of your previous exploration to
-present here as a summary of some of your most interesting findings. Make sure
-that you have refined your selected plots for good titling, axis labels (with
-units), and good aesthetic choices (e.g. color, transparency). After each plot,
-make sure you justify why you chose each plot by describing what it shows.
 
 ### Rates - Auction vs Fixed
 ```{r echo=FALSE, message=FALSE, warning=FALSE, Plot_One}
