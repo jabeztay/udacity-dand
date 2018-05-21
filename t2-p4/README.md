@@ -1,7 +1,7 @@
 # About
 
 Tableau visualisation project as part of Udacity's DAND.
-Latest version [here](https://public.tableau.com/profile/jabez.tay#!/vizhome/ContiguousUSFlightsv3/ContiguousUSFlights2013-2017)
+Latest version [here](https://public.tableau.com/profile/jabez.tay#!/vizhome/ContiguousUSFlightsv4/ContiguousUSFlights2013-2017)
 
 ## Summary
 
@@ -51,6 +51,13 @@ Data used is from the [Bureau of Transportation Statistics](https://www.transtat
 
 - in the chart 4M = 4 minutes?
 - 3rd shows percentage falling, but 4th shows percentage actually stays same (monthly vs yearly)
+
+### [V3](https://public.tableau.com/profile/jabez.tay#!/vizhome/ContiguousUSFlightsv3/ContiguousUSFlights2013-2017?publish=yes)
+
+#### 6 (Project submission review)
+
+- be more clear on figures between first and second story points
+- add summary to communicate findings
 
 ## Resources
 
