@@ -5,7 +5,7 @@ Latest version [here](https://public.tableau.com/profile/jabez.tay#!/vizhome/Con
 
 ## Summary
 
-A look into the delays of domestic flights in contiguous US from 2013-2017. We find that 30-40% of flights are delayed, and the main cause being late aircraft arrivals. Also see that the number of flights have gone down over the years, along with that less flights being delayed. However, the total delay minutes decreased by a lower percentage, meaning delayed flights are generally delayed longer.
+A look into the delays of domestic flights in contiguous US from 2013-2017. We find that 30-40% of flights are delayed, and the main cause being late aircraft arrivals. The number of flights have gone down over the years, along with that less flights being delayed. However, the total delay minutes decreased by a lower percentage, meaning delayed flights are generally delayed longer.
 
 Data used is from the [Bureau of Transportation Statistics](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236).
 
