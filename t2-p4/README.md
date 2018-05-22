@@ -1,11 +1,11 @@
 # About
 
 Tableau visualisation project as part of Udacity's DAND.
-Latest version [here](https://public.tableau.com/profile/jabez.tay#!/vizhome/ContiguousUSFlightsv4/ContiguousUSFlights2013-2017)
+Latest version [here](https://public.tableau.com/profile/jabez.tay#!/vizhome/ContiguousUSFlightsv5/ContiguousUSFlights2013-2017)
 
 ## Summary
 
-A look into the delays of domestic flights in contiguous US from 2013-2017.
+A look into the delays of domestic flights in contiguous US from 2013-2017. We find that the number of flights have gone down over the years, along with that less flights being delayed. However, the total delay minutes decreased by a lower percentage, meaning delayed flights are generally delayed longer.
 
 Data used is from the [Bureau of Transportation Statistics](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236).
 
@@ -58,6 +58,13 @@ Data used is from the [Bureau of Transportation Statistics](https://www.transtat
 
 - be more clear on figures between first and second story points
 - add summary to communicate findings
+
+### [V4](https://public.tableau.com/profile/jabez.tay#!/vizhome/ContiguousUSFlightsv4/ContiguousUSFlights2013-2017)
+
+#### 7 (Project submission review 2)
+
+- written summary outside of tableau needs to be touched up
+- could elaborate findings in captions
 
 ## Resources
 
