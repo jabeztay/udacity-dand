@@ -1,1 +1,0 @@
-Analyze the Stroop effect
